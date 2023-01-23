@@ -28,7 +28,11 @@ async function handleSubmitEvent(event){
     let cityName = event.target.cityName.value;
     let cityWeather = await getCityWeather(cityName);
     console.log(cityWeather)
-    weatherHeader.innerHTML = `Here's The Weather Info For ${cityWeather.name}:`
+    if (cityWeather.name !== undefined){
+        weatherHeader.innerHTML = `Here's The Weather Info For ${cityWeather.name}:`
+    } else {
+        weatherHeader.innerHTML = "Sorry, the city you entered is invalid. Please try again"
+    };
     buildCardHigh(cityWeather);
     buildCardLow(cityWeather);
     buildCardFeelsLike(cityWeather);
